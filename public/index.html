@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+    <title>Nómina conductores</title>
+</head>
+
+<body>
+    <div class="container" >
+        <h4>Calculadora de Nómina</h4>
+        <h5>Conductor internacional - Murcia</h5>
+        <form id="formulario">
+            <div class="form-group">
+                <label for="kms">Kilómetros Realizados</label>
+                <input type="number" class="form-control" id="et_kms" placeholder="Kms" name="kms">            
+            </div>            
+            <div class="form-group">   
+                <label for="anticipos">Anticipos recibidos</label>
+                <input type="number" class="form-control" id="an_ti" placeholder="Anticipos" name="anticipos">
+            </div>            
+            <div class="form-group">   
+                <label for="irpf">IRPF aplicado</label>
+                <input type="number" class="form-control" id="irpf" placeholder="IRPF aplicado" name="irpf">
+            </div>            
+            <div class="form-group">    
+                <label for="precioKmPactado">Precio (€/Kilómetro)</label>
+                <input type="number" class="form-control" id="precioKmPactado" placeholder="€/Kilómetro" name="precioKmPactado">
+            </div>
+            <p id="btn" onclick="calcula()" class="btn btn-default">Calcular</p>
+        </form>
+        <div class="table-responsive">
+            <table class="table" id="tabla" style="display:none">
+                <tbody>
+                    <tr>
+                        <td>Kms Realizados</td>
+                        <td id="kms_re"></td>
+                    </tr>
+                    <tr>
+                        <td>Precio (€/km)</td>
+                        <td id="precio_km"></td>
+                    </tr>
+                    <tr>
+                        <td>Tabla salarial</td>
+                        <td id="ta_salarial">2017</td>
+                    </tr>
+                    <tr>
+                        <td>Salario Base</td>
+                        <td id="sa_ba"></td>
+                    </tr>
+                    <tr>
+                        <td>Horas Extra</td>
+                        <td id="ho_ex"></td>
+                    </tr>
+                    <tr>
+                        <td>Plus de Asistencia</td>
+                        <td id="pl_as"></td>
+                    </tr>
+                    <tr>
+                        <td>Plus de Nocturnidad</td>
+                        <td id="pl_no"></td>
+                    </tr>
+                    <tr>
+                        <td>Horas Presencia</td>
+                        <td id="ho_pr"></td>
+                    </tr>
+                    <tr>
+                        <td>Plus Transporte</td>
+                        <td id="pl_tr"></td>
+                    </tr>
+                    <tr>
+                        <td>P.P. Beneficios (Extra prorroteada)</td>
+                        <td id="pa_be"></td>
+                    </tr>
+                    <tr>
+                        <td>Dietas</td>
+                        <td id="di_et"></td>
+                    </tr>
+                    <tr>
+                        <td>Total Devengado</td>
+                        <td id="to_dev"></td>
+                    </tr>
+                    <tr>
+                        <td>Total Aportaciones</td>
+                        <td id="to_aportaciones"></td>
+                    </tr>
+                    <tr>
+                        <td id="irpf_p">IRPF</td>
+                        <td id="irpf_r"></td>
+                    </tr>                    
+                    <tr>
+                        <td>Anticipos</td>
+                        <td id="anticipos"></td>
+                    </tr>
+                    <tr>
+                        <td>Total a Deducir</td>
+                        <td id="to_deducir"></td>
+                    </tr>
+                    <tr>
+                        <td>Líquido a percibir</td>
+                        <td id="li_percibir"></td>
+                    </tr>
+                    <tr>
+                        <td>Total retribuido (con anticipos)</td>
+                        <td id="to_retribuido"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
