@@ -20,7 +20,7 @@
 
 <body>
     <div class="container" >
-        <h4>Calculadora de Nómina</h4>
+        <h4 style="margin-top: 1em;">Calculadora de Nómina</h4>
         <h5>Conductor internacional - Murcia</h5>
         <form id="formulario">
             <div class="form-group">
@@ -39,7 +39,7 @@
                 <label for="precioKmPactado">Precio (€/Kilómetro)</label>
                 <input type="number" class="form-control" id="precioKmPactado" placeholder="€/Kilómetro" name="precioKmPactado">
             </div>
-            <p id="btn" onclick="calcula()" class="btn btn-default">Calcular</p>
+            <input type="button" onclick="calcula()" class="btn btn-default" value="Calcula">
         </form>
         <div class="table-responsive">
             <table class="table" id="tabla" style="display:none">
@@ -54,7 +54,7 @@
                     </tr>
                     <tr>
                         <td>Tabla salarial</td>
-                        <td id="ta_salarial">2017</td>
+                        <td id="ta_salarial"></td>
                     </tr>
                     <tr>
                         <td>Salario Base</td>

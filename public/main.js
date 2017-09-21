@@ -14,6 +14,7 @@
 
     const kms_re = document.getElementById("kms_re");
     const _precio_km = document.getElementById("precio_km");
+    const _ta_salarial = document.getElementById("ta_salarial");
     const _sa_ba = document.getElementById("sa_ba");
     const _ho_ex = document.getElementById("ho_ex");
     const _pl_as = document.getElementById("pl_as");
@@ -46,6 +47,9 @@
     };
 
     function Nomina(kms, an_ti, ir_pfQ) {
+        if (kms === "") kms=0;
+        if (an_ti === "") an_ti=0;
+
         let precioKmPactado = _precioKmPactado.value;
         _precio_km.innerHTML = precioKmPactado;        
 
@@ -59,6 +63,7 @@
             re_exQ = 4.7;
 
         kms_re.innerHTML = kms;
+        _ta_salarial.innerHTML = tabla_salarial;
         _sa_ba.innerHTML = sa_ba;
         let kilometrosFijos = kms > 10000 ? k_me10 * 10000 + ((kms - 10000) * (k_Ma10)) : kms * k_me10;
 
