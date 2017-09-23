@@ -19,7 +19,10 @@
     const btn = document.getElementById("btn");
 
     if (typeof (Storage) !== "undefined") {
-        _precioKmPactado.value = localStorage.getItem("preciokm");
+        var guardado = localStorage.getItem("preciokm");
+        if (guardado === null) _precioKmPactado.value = 0.118;
+        else
+            _precioKmPactado.value = guardado;
         _irpf.value = localStorage.getItem("irpf");
     }
 
@@ -53,7 +56,7 @@
 
     function incrementa(raiz, variable) {
         var databaseRef = database.ref(raiz).child(variable).child('contador');
-        databaseRef.transaction(function (searches) {            
+        databaseRef.transaction(function (searches) {
             return (searches || 0) + 1;
         });
     }
@@ -61,31 +64,31 @@
     function calcula() {
         tabla.style.display = 'block';
         formulario.style.display = 'none';
-        incrementa("valores_IRPF" , "Rondando el "+Math.round(_irpf.value).toString());
-        incrementa("kms_totales", et_kms.value != "" ? rangoKms(et_kms.value): "0");
+        incrementa("valores_IRPF", "Rondando el " + Math.round(_irpf.value).toString());
+        incrementa("kms_totales", et_kms.value != "" ? rangoKms(et_kms.value) : "0");
         incrementa("clics_totales", "boton_calcular");
         new Nomina(et_kms.value, _an_ti.value, _irpf.value);
     };
 
-    function recargar(){
+    function recargar() {
         incrementa("clics_totales", "boton_nueva_operacion");
         location.reload();
     }
 
-    function rangoKms(kms){
-        if(kms<6000) return "con menos de 6000 kms";
-        if(kms<9000) return "entre 6000 y 9000 kms";
-        if(kms<10000) return "entre 9000 y 10000 kms";
-        if(kms<11000) return "10000 y pico";
-        if(kms<12000) return "11000 y pico";
-        if(kms<13000) return "12000 y pico";
-        if(kms<14000) return "13000 y pico";
-        if(kms<15000) return "14000 y pico";
-        if(kms<16000) return "15000 y pico";
-        if(kms<17000) return "16000 y pico";
-        if(kms<18000) return "17000 y pico";
-        if(kms<19000) return "18000 y pico";
-        if(kms>19000) return "con más de 19000 kms";
+    function rangoKms(kms) {
+        if (kms < 6000) return "con menos de 6000 kms";
+        if (kms < 9000) return "entre 6000 y 9000 kms";
+        if (kms < 10000) return "entre 9000 y 10000 kms";
+        if (kms < 11000) return "10000 y pico";
+        if (kms < 12000) return "11000 y pico";
+        if (kms < 13000) return "12000 y pico";
+        if (kms < 14000) return "13000 y pico";
+        if (kms < 15000) return "14000 y pico";
+        if (kms < 16000) return "15000 y pico";
+        if (kms < 17000) return "16000 y pico";
+        if (kms < 18000) return "17000 y pico";
+        if (kms < 19000) return "18000 y pico";
+        if (kms > 19000) return "con más de 19000 kms";
     }
 
     function Nomina(kms, an_ti, ir_pfQ) {
@@ -95,7 +98,7 @@
 
         var precioKmPactado = _precioKmPactado.value != "" ? _precioKmPactado.value : 0;
         _precio_km.innerHTML = precioKmPactado;
-        
+
         incrementa("precio_km", precioKmPactado.toString().replace(".", ","));
 
         if (typeof (Storage) !== "undefined") {
