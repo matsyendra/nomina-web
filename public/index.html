@@ -19,11 +19,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-        crossorigin="anonymous"></script>        
+        crossorigin="anonymous"></script>
     <title>Nómina Conductores - 2017</title>
 </head>
 
-<body>    
+<body>
     <div class="container">
         <h4 style="margin-top: 0.6em;">Calculadora de Nómina</h4>
         <h5>Conductor internacional - Murcia</h5>
@@ -122,6 +122,9 @@
                         <td id="to_retribuido"></td>
                     </tr>
                     <tr>
+                        <td id="dias_convenio"></td>
+                    </tr>
+                    <tr>
                         <td>
                             <input type="button" onclick="recargar()" class="btn btn-default" value="Nueva operación">
                         </td>
@@ -133,51 +136,51 @@
     <script src="main.m.js"></script>
     <!--//BLOQUE COOKIES-->
     <div id="barraaceptacion">
-            <div class="inner">
-                Solicitamos su permiso para obtener datos estad&iacute;sticos de su navegaci&oacute;n en esta web, en cumplimiento del Real
-                Decreto-ley 13/2012. Si contin&uacute;a navegando consideramos que acepta el uso de cookies.
-                <a href="javascript:void(0);" class="ok" onclick="PonerCookie();"><b>OK</b></a> |
-                <a href="./politica-de-cookies.html" target="_self" class="info">M&aacute;s informaci&oacute;n</a>
-            </div>
+        <div class="inner">
+            Solicitamos su permiso para obtener datos estad&iacute;sticos de su navegaci&oacute;n en esta web, en cumplimiento del Real
+            Decreto-ley 13/2012. Si contin&uacute;a navegando consideramos que acepta el uso de cookies.
+            <a href="javascript:void(0);" class="ok" onclick="PonerCookie();"><b>OK</b></a> |
+            <a href="./politica-de-cookies.html" target="_self" class="info">M&aacute;s informaci&oacute;n</a>
         </div>
-    
-        <script>
-            function getCookie(c_name) {
-                var c_value = document.cookie;
-                var c_start = c_value.indexOf(" " + c_name + "=");
-                if (c_start == -1) {
-                    c_start = c_value.indexOf(c_name + "=");
+    </div>
+
+    <script>
+        function getCookie(c_name) {
+            var c_value = document.cookie;
+            var c_start = c_value.indexOf(" " + c_name + "=");
+            if (c_start == -1) {
+                c_start = c_value.indexOf(c_name + "=");
+            }
+            if (c_start == -1) {
+                c_value = null;
+            } else {
+                c_start = c_value.indexOf("=", c_start) + 1;
+                var c_end = c_value.indexOf(";", c_start);
+                if (c_end == -1) {
+                    c_end = c_value.length;
                 }
-                if (c_start == -1) {
-                    c_value = null;
-                } else {
-                    c_start = c_value.indexOf("=", c_start) + 1;
-                    var c_end = c_value.indexOf(";", c_start);
-                    if (c_end == -1) {
-                        c_end = c_value.length;
-                    }
-                    c_value = unescape(c_value.substring(c_start, c_end));
-                }
-                return c_value;
+                c_value = unescape(c_value.substring(c_start, c_end));
             }
-    
-            function setCookie(c_name, value, exdays) {
-                var exdate = new Date();
-                exdate.setDate(exdate.getDate() + exdays);
-                var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
-                document.cookie = c_name + "=" + c_value;
-            }
-    
-            if (getCookie('tiendaaviso') != "1") {
-                document.getElementById("barraaceptacion").style.display = "block";
-            }
-    
-            function PonerCookie() {
-                setCookie('tiendaaviso', '1', 365);
-                document.getElementById("barraaceptacion").style.display = "none";
-            }
-        </script>
-        <!--//FIN BLOQUE COOKIES-->  
+            return c_value;
+        }
+
+        function setCookie(c_name, value, exdays) {
+            var exdate = new Date();
+            exdate.setDate(exdate.getDate() + exdays);
+            var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
+            document.cookie = c_name + "=" + c_value;
+        }
+
+        if (getCookie('tiendaaviso') != "1") {
+            document.getElementById("barraaceptacion").style.display = "block";
+        }
+
+        function PonerCookie() {
+            setCookie('tiendaaviso', '1', 365);
+            document.getElementById("barraaceptacion").style.display = "none";
+        }
+    </script>
+    <!--//FIN BLOQUE COOKIES-->
 </body>
 
 </html>

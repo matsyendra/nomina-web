@@ -44,7 +44,8 @@
     const _anticipos = document.getElementById("anticipos");
     const _to_deducir = document.getElementById("to_deducir");
     const _li_percibir = document.getElementById("li_percibir");
-    const _to_retribuido = document.getElementById("to_retribuido");
+    const _to_retribuido = document.getElementById("to_retribuido");    
+    const _dias_convenio = document.getElementById("dias_convenio");
 
     const tabla_salarial = 2017;
     const sa_ba = 936.78;
@@ -53,8 +54,12 @@
     const pl_tr = 95.86;
     const k_me10 = 0.0181;
     const k_Ma10 = 0.0323;
+    const k_me10d = 0.0263;
+    const k_Ma10d = 0.0474;
+    const dieta_diaria = 30;
 
-    function incrementa(raiz, variable) {
+
+    function incrementa(raiz, variable) { //TODO: desarrollo o no: "desarrollo/" +
         var databaseRef = database.ref(raiz).child(variable).child('contador');
         databaseRef.transaction(function (searches) {
             return (searches || 0) + 1;
@@ -114,6 +119,7 @@
         _ta_salarial.innerHTML = tabla_salarial;
         _sa_ba.innerHTML = sa_ba;
         var kilometrosFijos = kms > 10000 ? k_me10 * 10000 + ((kms - 10000) * (k_Ma10)) : kms * k_me10;
+        var kilometrosDietas = kms > 10000 ? k_me10d * 10000 + ((kms - 10000) * (k_Ma10d)) : kms * k_me10d;
 
         var ho_ex = kilometrosFijos * (0.5);
         _ho_ex.innerHTML = ho_ex.toFixed(2);
@@ -127,6 +133,10 @@
 
         var di_et = (kms * precioKmPactado) - kilometrosFijos;
         _di_et.innerHTML = di_et.toFixed(2);
+        var dietas_sin_ktje = di_et - kilometrosDietas;
+        var dias_a_convenio = dietas_sin_ktje / dieta_diaria;
+        var dato = "Ha convenio tendrías que haber estado "+dias_a_convenio.toFixed(2).toString()+" días fuera";
+        _dias_convenio.innerHTML = dato;
         var to_dev = ho_ex + pl_no + ho_pr + di_et + sa_ba + pl_tr + pa_be + pl_as;
         _to_dev.innerHTML = to_dev.toFixed(2);
         var co_co = (pl_tr + sa_ba + ho_ex + pl_as + pa_be + (sa_ba / 6)) * co_coQ / 100;
