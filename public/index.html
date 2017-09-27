@@ -11,7 +11,8 @@
     <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-database.js"></script>
 
     <link href="cookies.css" rel="stylesheet" type="text/css">
-
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Mukta:400,300,700">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
         crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
@@ -23,7 +24,12 @@
     <title>Nómina Conductores - 2017</title>
 </head>
 
-<body>
+<body style="font-family: 'Mukta', sans-serif; font-size: 22px;">
+    <style>
+        td.dato {
+        text-align: right;
+        }
+        </style>
     <div class="container">
         <h4 style="margin-top: 0.6em;">Calculadora de Nómina</h4>
         <h5>Conductor internacional - Murcia</h5>
@@ -51,78 +57,79 @@
                 <tbody>
                     <tr>
                         <td>Kms Realizados</td>
-                        <td id="kms_re"></td>
+                        <td class="dato" id="kms_re"></td>
                     </tr>
                     <tr>
                         <td>Precio (€/km)</td>
-                        <td id="precio_km"></td>
+                        <td class="dato" id="precio_km"></td>
                     </tr>
                     <tr>
                         <td>Tabla salarial</td>
-                        <td id="ta_salarial"></td>
+                        <td class="dato" id="ta_salarial"></td>
                     </tr>
                     <tr>
                         <td>Salario Base</td>
-                        <td id="sa_ba"></td>
+                        <td class="dato" id="sa_ba"></td>
                     </tr>
                     <tr>
                         <td>Horas Extra</td>
-                        <td id="ho_ex"></td>
+                        <td class="dato" id="ho_ex"></td>
                     </tr>
                     <tr>
                         <td>Plus de Asistencia</td>
-                        <td id="pl_as"></td>
+                        <td class="dato" id="pl_as"></td>
                     </tr>
                     <tr>
                         <td>Plus de Nocturnidad</td>
-                        <td id="pl_no"></td>
+                        <td class="dato" id="pl_no"></td>
                     </tr>
                     <tr>
                         <td>Horas Presencia</td>
-                        <td id="ho_pr"></td>
+                        <td class="dato" id="ho_pr"></td>
                     </tr>
                     <tr>
                         <td>Plus Transporte</td>
-                        <td id="pl_tr"></td>
+                        <td class="dato" id="pl_tr"></td>
                     </tr>
                     <tr>
                         <td>P.P. Beneficios (Extra prorroteada)</td>
-                        <td id="pa_be"></td>
+                        <td class="dato" id="pa_be"></td>
                     </tr>
                     <tr>
                         <td>Dietas</td>
-                        <td id="di_et"></td>
+                        <td class="dato" id="di_et"></td>
                     </tr>
                     <tr>
                         <td>Total Devengado</td>
-                        <td id="to_dev"></td>
+                        <td class="dato" id="to_dev"></td>
                     </tr>
                     <tr>
                         <td>Total Aportaciones</td>
-                        <td id="to_aportaciones"></td>
+                        <td class="dato" id="to_aportaciones"></td>
                     </tr>
                     <tr>
                         <td id="irpf_p">IRPF</td>
-                        <td id="irpf_r"></td>
+                        <td class="dato" id="irpf_r"></td>
                     </tr>
                     <tr>
                         <td>Anticipos</td>
-                        <td id="anticipos"></td>
+                        <td class="dato" id="anticipos"></td>
                     </tr>
                     <tr>
                         <td>Total a Deducir</td>
-                        <td id="to_deducir"></td>
+                        <td class="dato" id="to_deducir"></td>
                     </tr>
                     <tr>
                         <td>Líquido a percibir</td>
-                        <td id="li_percibir"></td>
+                        <td class="dato" id="li_percibir"></td>
                     </tr>
                     <tr>
                         <td>Total retribuido (con anticipos)</td>
-                        <td id="to_retribuido"></td>
+                        <td class="dato" id="to_retribuido"></td>
                     </tr>
                     <tr>
-                        <td id="dias_convenio"></td>
+                        <td>Tiempo de viaje de ajustarse a convenio</td>                        
+                        <td class="dato" id="dias_convenio"><mark></mark></td>
                     </tr>
                     <tr>
                         <td>

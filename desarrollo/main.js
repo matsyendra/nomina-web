@@ -135,7 +135,7 @@
         _di_et.innerHTML = di_et.toFixed(2);
         var dietas_sin_ktje = di_et - kilometrosDietas;
         var dias_a_convenio = dietas_sin_ktje / dieta_diaria;
-        var dato = "Ha convenio tendrías que haber estado "+dias_a_convenio.toFixed(2).toString()+" días fuera";
+        var dato = dias_a_convenio.toFixed(2).toString()+" días completos";
         _dias_convenio.innerHTML = dato;
         var to_dev = ho_ex + pl_no + ho_pr + di_et + sa_ba + pl_tr + pa_be + pl_as;
         _to_dev.innerHTML = to_dev.toFixed(2);
