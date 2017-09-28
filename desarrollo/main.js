@@ -20,7 +20,7 @@
 
     if (typeof (Storage) !== "undefined") {
         var guardado = localStorage.getItem("preciokm");
-        if (guardado === null) _precioKmPactado.value = 0.118;
+        if (guardado === null) _precioKmPactado.value = 11.5;
         else
             _precioKmPactado.value = guardado;
         _irpf.value = localStorage.getItem("irpf");
@@ -77,7 +77,10 @@
 
     function recargar() {
         incrementa("clics_totales", "boton_nueva_operacion");
-        location.reload();
+        tabla.style.display = 'none';
+        formulario.style.display = 'block';
+        et_kms.value = "";
+        _an_ti.value = "";
     }
 
     function rangoKms(kms) {
@@ -102,7 +105,7 @@
         if (ir_pfQ === "") ir_pfQ = 0;
 
         var precioKmPactado = _precioKmPactado.value != "" ? _precioKmPactado.value : 0;
-        _precio_km.innerHTML = precioKmPactado;
+        _precio_km.innerHTML = precioKmPactado.toString()+" cts/km";;
 
         incrementa("precio_km", precioKmPactado.toString().replace(".", ","));
 
@@ -131,7 +134,7 @@
         _pl_tr.innerHTML = pl_tr;
         _pa_be.innerHTML = pa_be;
 
-        var di_et = (kms * precioKmPactado) - kilometrosFijos;
+        var di_et = (kms * precioKmPactado / 100) - kilometrosFijos;
         _di_et.innerHTML = di_et.toFixed(2);
         var dietas_sin_ktje = di_et - kilometrosDietas;
         var dias_a_convenio = dietas_sin_ktje / dieta_diaria;
