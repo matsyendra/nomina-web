@@ -3,24 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-database.js"></script>  
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
-    <link href="cookies.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Mukta:400,300,700">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-        crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-        crossorigin="anonymous"></script>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="cookies.css" rel="stylesheet" type="text/css">    
     <title>Nómina Conductores - 2017</title>
 </head>
 
@@ -52,10 +44,10 @@
                 <label for="precioKmPactado">Precio ( céntimos / kilómetro )</label>
                 <input type="number" class="form-control" id="precioKmPactado_ht" placeholder="(Ejemplo: 11,5)" name="precioKmPactado">
             </div>
-            <input type="button" onclick="calcula()" class="btn btn-default" value="Calcula">
+            <input type="button" onclick="calcula()" class="waves-effect waves-light btn" value="Calcula">
         </form>
         <div class="table-responsive">
-            <table class="table" id="tabla" style="display:none">
+            <table class="striped" id="tabla" style="display:none">
                 <tbody>
                     <tr>
                         <td>Kms Realizados</td>
@@ -189,7 +181,11 @@
             document.getElementById("barraaceptacion").style.display = "none";
         }
     </script>
+    
     <!--//FIN BLOQUE COOKIES-->
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
 </body>
 
 </html>

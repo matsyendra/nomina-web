@@ -67,7 +67,7 @@
     }
 
     function calcula() {
-        tabla.style.display = 'block';
+        document.getElementById("tabla").style.display = 'block';
         formulario.style.display = 'none';
         incrementa("valores_IRPF", "Rondando el " + Math.round(_irpf.value).toString());
         incrementa("kms_totales", et_kms.value != "" ? rangoKms(et_kms.value) : "0");
