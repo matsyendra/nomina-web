@@ -26,7 +26,7 @@
         _irpf.value = localStorage.getItem("irpf");
     }
 
-    const kms_re = document.getElementById("kms_re");
+    const kms_re = document.querySelector("#kms_re");
     const _precio_km = document.getElementById("precio_km");
     const _ta_salarial = document.getElementById("ta_salarial");
     const _sa_ba = document.getElementById("sa_ba");
