@@ -26,20 +26,16 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="cookies.css" rel="stylesheet" type="text/css">
+    <link href="estilos.css" rel="stylesheet" type="text/css">
     <title>Nómina Conductores - 2017</title>
 </head>
 
 <body style="font-family: 'Mukta', sans-serif; font-size: 15px;">
-    <style>
-        td.dato {
-            text-align: right;
-        }
-    </style>
-    <div class="container">
-        <div style="color: rgba(38, 114, 175, 0.76);">
-            <h4 style="margin-top: 0.6em;">Calculadora de Nómina</h4>
-            <h5>Conductor Internacional - Murcia</h5>
-        </div>
+
+    <header class="header">
+        <h1 class="header__title">Nómina Chófer Internacional Murcia</h1>
+    </header>
+    <div class="container margen68">
         <form id="formulario">
             <div class="form-group">
                 <label for="kms">Kilómetros Realizados</label>
@@ -57,7 +53,7 @@
                 <label for="precioKmPactado">Precio ( céntimos / kilómetro )</label>
                 <input type="number" class="form-control" id="precioKmPactado_ht" placeholder="(Ejemplo: 11,5)" name="precioKmPactado">
             </div>
-            <input type="button" onclick="calcula()" class="waves-effect waves-light btn" value="Calcula">
+            <input type="button" onclick="calcula()" class="waves-effect waves-light btn color-verde" value="Calcula">
         </form>
         <div class="table-responsive">
             <table class="striped" id="tabla" style="display:none">
@@ -140,7 +136,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type="button" onclick="recargar()" class="btn btn-default" value="Nueva operación">
+                            <input type="button" onclick="recargar()" class="btn btn-default color-verde" value="Nueva operación">
                         </td>
                     </tr>
                 </tbody>
@@ -155,7 +151,9 @@
         <div class="inner">
             Solicitamos su permiso para obtener datos estad&iacute;sticos de su navegaci&oacute;n en esta web, en cumplimiento del Real
             Decreto-ley 13/2012. Si contin&uacute;a navegando consideramos que acepta el uso de cookies.
-            <a href="javascript:void(0);" class="ok" onclick="PonerCookie();"><b>OK</b></a> |
+            <a href="javascript:void(0);" class="ok" onclick="PonerCookie();">
+                <b>OK</b>
+            </a> |
             <a href="./politica-de-cookies.html" target="_self" class="info">M&aacute;s informaci&oacute;n</a>
         </div>
     </div>
