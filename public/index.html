@@ -5,16 +5,6 @@
     <meta charset="UTF-8">
 
     <link rel="manifest" href="manifest.json">
-    <!-- 
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="application-name" content="Mi nómina">
-<meta name="apple-mobile-web-app-title" content="Mi nómina">
-<meta name="theme-color" content="#0275d8">
-<meta name="msapplication-navbutton-color" content="#0275d8">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="msapplication-starturl" content="/indexación.html">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
 
     <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-database.js"></script>
@@ -34,6 +24,7 @@
 
     <header class="header">
         <h1 class="header__title">Nómina Chófer Internacional Murcia</h1>
+        <i onclick="compartir()" class="material-icons">share</i>
     </header>
     <div class="container margen68">
         <form id="formulario">
@@ -149,7 +140,7 @@
     <!--//BLOQUE COOKIES-->
     <div id="barraaceptacion">
         <div class="inner">
-            En cumplimiento del Real Decreto-ley 13/2012. Si contin&uacute;a navegando consideramos que acepta el uso de cookies.
+            Si contin&uacute;a navegando consideramos que acepta el uso de cookies.
             <a href="javascript:void(0);" class="ok" onclick="PonerCookie();">
                 <b>OK</b>
             </a> |

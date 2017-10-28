@@ -21,8 +21,8 @@ var config = {
 var incrementa_var;
 
 window.addEventListener('online', is_online());
-window.addEventListener('offline', function(){
- incrementa_var = null;
+window.addEventListener('offline', function () {
+    incrementa_var = null;
 });
 
 function is_online() {
@@ -95,6 +95,16 @@ document.getElementById("calcula").addEventListener("click", function () {
     incrementa("clics_totales", "boton_calcular");
     new Nomina(et_kms.value, _an_ti.value, _irpf.value);
 });*/
+
+
+function compartir() {
+    if (navigator.share) {
+        navigator.share({
+            text: 'Prueba la calculadora de Nómina en: ',
+            url: 'https://nomina-6e781.firebaseapp.com/',
+        })
+    }
+}
 
 function calcula() {
     document.getElementById("tabla").style.display = 'block';
