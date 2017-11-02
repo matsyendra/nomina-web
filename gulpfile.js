@@ -8,7 +8,7 @@ gulp.task('gen-sw', function(callback) {
   var swPrecache = require('sw-precache');
   var rootDir = 'public';
 
-  swPrecache.write(path.join(rootDir, 'sw.js'), {
+  swPrecache.write(path.join(rootDir, 'sw-1.js'), {
     staticFileGlobs: [rootDir + '/**/*.{js,html,css,png,jpg,gif}'],
     stripPrefix: rootDir
   }, callback);
