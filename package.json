@@ -1,0 +1,36 @@
+{
+  "name": "firehost2",
+  "version": "1.0.0",
+  "description": "nomina en produccion",
+  "main": "app.js",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "css-loader": "^0.28.7",
+    "file-loader": "^1.1.5",
+    "gulp": "^3.9.1",
+    "style-loader": "^0.19.0",
+    "sw-precache": "^5.2.0",
+    "workbox-webpack-plugin": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4"
+  },
+  "scripts": {
+    "build": "webpack -p",
+    "public": "webpack-dev-server --content-base public/",
+    "dist": "webpack-dev-server --content-base dist/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/matsyendra/nomina-web.git"
+  },
+  "author": "felipe",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/matsyendra/nomina-web#readme"
+}

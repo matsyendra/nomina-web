@@ -1,3 +1,10 @@
+//webpack imports:
+//import './css/materialize.min2.css';
+//import './js/materialize.min.js';
+import './cookies.css';
+import './estilos.css';
+//fin webpacks imports.
+
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
         navigator.serviceWorker.register('/sw-1.js').then(function (registration) {
@@ -86,18 +93,33 @@ const k_me10d = 0.0263;
 const k_Ma10d = 0.0474;
 const dieta_diaria = 30;
 
-/*
+
 document.getElementById("calcula").addEventListener("click", function () { 
     document.getElementById("tabla").style.display = 'block';
     formulario.style.display = 'none';
-    incrementa("valores_IRPF", "Rondando el " + Math.round(_irpf.value).toString());
-    incrementa("kms_totales", et_kms.value != "" ? rangoKms(et_kms.value) : "0");
-    incrementa("clics_totales", "boton_calcular");
+    incrementa_var("valores_IRPF", "Rondando el " + Math.round(_irpf.value).toString());
+    incrementa_var("kms_totales", et_kms.value != "" ? rangoKms(et_kms.value) : "0");
+    incrementa_var("clics_totales", "boton_calcular");
     new Nomina(et_kms.value, _an_ti.value, _irpf.value);
-});*/
+});
+document.getElementById("recargar").addEventListener("click", function () { 
+    incrementa_var("clics_totales", "boton_nueva_operacion");
+    tabla.style.display = 'none';
+    formulario.style.display = 'block';
+    et_kms.value = "";
+    _an_ti.value = "";
+});
 
+document.getElementById("compartir").addEventListener("click", function () {
+    if (navigator.share) {
+        navigator.share({
+            text: 'Prueba la calculadora de Nómina en: ',
+            url: 'https://nomina-6e781.firebaseapp.com/',
+        })
+    }
+});
 
-function compartir() {
+/* function compartir() {
     if (navigator.share) {
         navigator.share({
             text: 'Prueba la calculadora de Nómina en: ',
@@ -105,7 +127,6 @@ function compartir() {
         })
     }
 }
-
 function calcula() {
     document.getElementById("tabla").style.display = 'block';
     formulario.style.display = 'none';
@@ -114,14 +135,13 @@ function calcula() {
     incrementa_var("clics_totales", "boton_calcular");
     new Nomina(et_kms.value, _an_ti.value, _irpf.value);
 };
-
 function recargar() {
     incrementa_var("clics_totales", "boton_nueva_operacion");
     tabla.style.display = 'none';
     formulario.style.display = 'block';
     et_kms.value = "";
     _an_ti.value = "";
-}
+} */
 
 function rangoKms(kms) {
     if (kms < 6000) return "con menos de 6000 kms";
@@ -187,8 +207,8 @@ function Nomina(kms, an_ti, ir_pfQ) {
     var fo_pr = (((pl_tr + sa_ba + ho_ex + pl_as + pa_be + (sa_ba / 6)) + ho_ex) * fo_prQ) / 100;
     var re_ex = ho_ex * re_exQ / 100;
 
-    ir_pf = (to_dev - di_et) * ir_pfQ / 100;
-    to_ap = co_co + de_se + fo_pr + re_ex;
+    var ir_pf = (to_dev - di_et) * ir_pfQ / 100;
+    var to_ap = co_co + de_se + fo_pr + re_ex;
     _to_aportaciones.innerHTML = to_ap.toFixed(2);
     var msg = "IRPF (".concat(ir_pfQ, "%)");
     _irpf_p.innerHTML = msg;
@@ -197,7 +217,7 @@ function Nomina(kms, an_ti, ir_pfQ) {
     _anticipos.innerHTML = anticipos
     var to_ded = to_ap + ir_pf + anticipos;
     _to_deducir.innerHTML = parseFloat(to_ded).toFixed(2);
-    to_a_percibir = to_dev - to_ded;
+    var to_a_percibir = to_dev - to_ded;
     _li_percibir.innerHTML = parseFloat(to_a_percibir).toFixed(2);
     var TT_RE = to_a_percibir + anticipos;
     _to_retribuido.innerHTML = parseFloat(TT_RE).toFixed(2);

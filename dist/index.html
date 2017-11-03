@@ -10,13 +10,17 @@
     <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-database.js"></script>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min2.css" media="screen,projection" />
 
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
     <link href="cookies.css" rel="stylesheet" type="text/css">
-    <link href="estilos.css" rel="stylesheet" type="text/css">
+    <link href="estilos.css" rel="stylesheet" type="text/css"> 
+    -->
     <title>Nómina Conductores - 2017</title>
 </head>
 
@@ -134,7 +138,7 @@
             </table>
         </div>
     </div>
-    <script src="main.js"></script>
+    <script src="bundled.js"></script>
     <!-- TODO: dev o build -->
     <script type="text/javascript" src="sw-1.js"></script>
     <!--//BLOQUE COOKIES-->
@@ -149,7 +153,7 @@
     </div>
 
     <script>
-    function getCookie(c_name) {
+        function getCookie(c_name) {
     var c_value = document.cookie;
     var c_start = c_value.indexOf(" " + c_name + "=");
     if (c_start == -1) {
