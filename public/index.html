@@ -24,7 +24,7 @@
 
     <header class="header">
         <h1 class="header__title">Nómina Chófer Internacional Murcia</h1>
-        <i onclick="compartir()" class="material-icons">share</i>
+        <i id="compartir" class="material-icons">share</i>
     </header>
     <div class="container margen68">
         <form id="formulario">
@@ -44,7 +44,7 @@
                 <label for="precioKmPactado">Precio ( céntimos / kilómetro )</label>
                 <input type="number" class="form-control" id="precioKmPactado_ht" placeholder="(Ejemplo: 11,5)" name="precioKmPactado">
             </div>
-            <input type="button" onclick="calcula()" class="waves-effect waves-light btn color-verde" value="Calcula">
+            <input type="button" id="calcula" class="waves-effect waves-light btn color-verde" value="Calcula">
         </form>
         <div class="table-responsive">
             <table class="striped" id="tabla" style="display:none">
@@ -127,15 +127,14 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type="button" onclick="recargar()" class="btn btn-default color-verde" value="Nueva operación">
+                            <input type="button" id="recargar" class="btn btn-default color-verde" value="Nueva operación">
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <script src="main.js"></script>
-    <!-- TODO: dev o build -->
+    <script src="bundle.js"></script>
     <script type="text/javascript" src="sw.js"></script>
     <!--//BLOQUE COOKIES-->
     <div id="barraaceptacion">
