@@ -1,0 +1,17 @@
+{
+  "name": "nomina-web",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/matsyendra/nomina-web.git",
+  "author": "Matsyendra <campi1112@hotmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "sw-precache": "^5.2.0",
+    "webpack": "^3.9.1"
+  },
+  "scripts": {
+    "pack": "webpack ./public/main.js ./public/bundle.js -p && gulp gen-sw",
+    "pack-deplo": "webpack ./public/main.js ./public/bundle.js -p && gulp gen-sw && mv ./public/main.js ./desarrollo/main.js"
+  }
+}
