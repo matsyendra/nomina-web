@@ -9,7 +9,7 @@ gulp.task('gen-sw', function(callback) {
   var rootDir = 'public';
 
   swPrecache.write(path.join(rootDir, 'sw.js'), {
-    staticFileGlobs: [rootDir + '/**/*.{js,html,css,png,jpg,gif,woff2,woff}'],
+    staticFileGlobs: [rootDir + '/**/*.{js,html,css,png,jpg,gif}'],
     stripPrefix: rootDir
   }, callback);
 });
