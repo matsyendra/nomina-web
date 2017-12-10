@@ -29,11 +29,11 @@
     }
 
     window.addEventListener('online', function () {
-        console.log('está online');
+        console.log('está online --');
 
     });
     window.addEventListener('offline', function () {
-        console.log('está offline');
+        console.log('está offline --');
     });
 
     const formulario = document.getElementById("formulario");

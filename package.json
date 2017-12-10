@@ -11,7 +11,9 @@
     "webpack": "^3.9.1"
   },
   "scripts": {
-    "pack": "webpack ./public/main.js ./public/bundle.js -p && gulp gen-sw",
-    "pack-deplo": "webpack ./public/main.js ./public/bundle.js -p && gulp gen-sw && mv ./public/main.js ./desarrollo/main.js"
+    "pack": "webpack ./public/.main.js ./public/bundle.js -p && gulp gen-sw",
+    "serve": "webpack ./public/.main.js ./public/bundle.js -p && gulp gen-sw && firebase serve",
+    "deploy": "webpack ./public/.main.js ./public/bundle.js -p && gulp gen-sw && firebase deploy",
+    "//": "falló: -&& mv ./public/main.js ./desarrollo/main.js- en script anterior ¿? previo al deploy"
   }
 }
