@@ -12,7 +12,7 @@
   },
   "scripts": {
     "pack": "webpack ./public/.main.js ./public/bundle.js -p && gulp gen-sw",
-    "simple": "webpack ./public/.main.js ./public/bundle.js -p && simple-server public 3000",
+    "simple": "webpack ./public/.main.js ./public/bundle.js -p && gulp gen-sw && simple-server public 3000",
     "serve": "webpack ./public/.main.js ./public/bundle.js -p && gulp gen-sw && firebase serve",
     "deploy": "webpack ./public/.main.js ./public/bundle.js -p && gulp gen-sw && firebase deploy",
     "//": "falló: -&& mv ./public/main.js ./desarrollo/main.js- en script anterior ¿? previo al deploy"
