@@ -168,8 +168,8 @@
         kms_re.innerHTML = kms;
         _ta_salarial.innerHTML = tabla_salarial;
         _sa_ba.innerHTML = sa_ba;
-        var kilometrosFijos = kms > 10000 ? k_me10 * 10000 + ((kms - 10000) * (k_Ma10)) : kms * k_me10;
-        var kilometrosDietas = kms > 10000 ? k_me10d * 10000 + ((kms - 10000) * (k_Ma10d)) : kms * k_me10d;
+        var kilometrosFijos = kms > 10000 ? k_me10 * 10000 + (kms - 10000) * (k_Ma10) : kms * k_me10;
+        var kilometrosDietas = kms > 10000 ? k_me10d * 10000 + (kms - 10000) * (k_Ma10d) : kms * k_me10d;
 
         var ho_ex = kilometrosFijos * (0.5);
         _ho_ex.innerHTML = ho_ex.toFixed(2);
@@ -185,13 +185,13 @@
         _di_et.innerHTML = di_et.toFixed(2);
         var dietas_sin_ktje = di_et - kilometrosDietas;
         var dias_a_convenio = dietas_sin_ktje / dieta_diaria;
-        var dato = dias_a_convenio.toFixed(2).toString() + " días completos";
+        var dato = dias_a_convenio.toFixed(2).toString() + " días completis";
         _dias_convenio.innerHTML = dato;
         var to_dev = ho_ex + pl_no + ho_pr + di_et + sa_ba + pl_tr + pa_be + pl_as;
         _to_dev.innerHTML = to_dev.toFixed(2);
-        var co_co = (pl_tr + sa_ba + ho_ex + pl_as + pa_be + (sa_ba / 6)) * co_coQ / 100;
-        var de_se = (((pl_tr + sa_ba + ho_ex + pl_as + pa_be + (sa_ba / 6)) + ho_ex) * de_seQ) / 100;
-        var fo_pr = (((pl_tr + sa_ba + ho_ex + pl_as + pa_be + (sa_ba / 6)) + ho_ex) * fo_prQ) / 100;
+        var co_co = (pl_tr + sa_ba + ho_ex + pl_as + pa_be + sa_ba / 6) * co_coQ / 100;
+        var de_se = (pl_tr + sa_ba + kilometrosFijos + pl_as + pa_be + sa_ba / 6) * de_seQ / 100;
+        var fo_pr = (pl_tr + sa_ba + kilometrosFijos + pl_as + pa_be + sa_ba / 6) * fo_prQ / 100;
         var re_ex = ho_ex * re_exQ / 100;
 
         ir_pf = (to_dev - di_et) * ir_pfQ / 100;
