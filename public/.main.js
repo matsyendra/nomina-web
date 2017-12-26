@@ -39,11 +39,12 @@
     const formulario = document.getElementById("formulario");
     const tabla = document.getElementById("tabla");
     const _an_ti = document.getElementById("an_ti");
+    const pl_empresa = document.getElementById("pl_empresa");
     const _irpf = document.getElementById("irpf");
     const et_kms = document.getElementById("et_kms");
     const in_gr = document.getElementById("in_gr");
     const _precioKmPactado = document.getElementById("precioKmPactado_ht");
-    const btn = document.getElementById("btn");
+    const b_calcula = document.getElementById('calcula');
 
     if (typeof (Storage) !== "undefined") {
         var guardado = localStorage.getItem("preciokm");
@@ -105,7 +106,7 @@
         }
     });
 
-    document.getElementById('calcula').addEventListener("click", function (event) {
+    b_calcula.addEventListener("click", function (event) {
         event.preventDefault();
         if (document.activeElement) { //FIXME: OBSERVAR
             document.activeElement.blur();
@@ -118,7 +119,7 @@
             incrementa_var("kms_totales", et_kms.value != "" ? rangoKms(et_kms.value) : "0");
             incrementa_var("clics_totales", "boton_calcular");
         } else console.log('calcula offline');
-        new Nomina(et_kms.value, _an_ti.value, _irpf.value);
+        //new Nomina(et_kms.value, _an_ti.value, _irpf.value);
     });
 
     document.getElementById('recargar').addEventListener("click", function (event) {
@@ -130,6 +131,8 @@
         formulario.style.display = 'grid';
         et_kms.value = "";
         _an_ti.value = "";
+        pl_empresa.value = "";
+        in_gr.value = "";
     });
 
     function rangoKms(kms) {
@@ -148,40 +151,50 @@
         if (kms > 19000) return "con más de 19000 kms";
     }
 
-    et_kms.oninput = function () {
+    const bb = document.getElementById('bb');
+    const calcula_auto = function () {
         if (et_kms.value != "" && _precioKmPactado.value != "") {
-            n = new Nomina(et_kms.value, _an_ti.value, _irpf.value);
+            n = new Nomina(et_kms.value, _an_ti.value, _irpf.value, pl_empresa.value);
             var v = n.ingreso;
             in_gr.value = v;
-        } else in_gr.value = "";
-    };
-    _irpf.oninput = function () {
-        if (et_kms.value != "" && _precioKmPactado.value != "") {
-            n = new Nomina(et_kms.value, _an_ti.value, _irpf.value);
-            var v = n.ingreso;
-            in_gr.value = v;
-        } else in_gr.value = "";
-    };
-    _precioKmPactado.oninput = function () {
-        if (et_kms.value != "" && _precioKmPactado.value != "") {
-            n = new Nomina(et_kms.value, _an_ti.value, _irpf.value);
-            var v = n.ingreso;
-            in_gr.value = v;
-        } else in_gr.value = "";
-    };
-    _an_ti.oninput = function () {
-        if (et_kms.value != "" && _precioKmPactado.value != "") {
-            n = new Nomina(et_kms.value, _an_ti.value, _irpf.value);
-            var v = n.ingreso;
-            in_gr.value = v;
-        } else in_gr.value = "";
+            bb.style.display = "grid";
+        } else {
+            in_gr.value = "";
+            bb.style.display = 'none';
+        }
     };
 
+    const check_ingreso = document.getElementById('check_importe');
+    const check_preciokm = document.getElementById('check_preciokm');
+    if (check_ingreso.checked) checkeando_ingreso;
+    check_preciokm.checked = false;
+    check_ingreso.addEventListener('change', function () {
+        if (this.checked) {
+            checkeando_ingreso;
+        }
+    });
 
-    var Nomina = function (kms, an_ti, ir_pfQ) {        
+    var checkeando_ingreso = function () {
+        check_preciokm.checked = false;
+        et_kms.oninput = calcula_auto;
+        _irpf.oninput = calcula_auto;
+        _precioKmPactado.oninput = calcula_auto;
+        _an_ti.oninput = calcula_auto;
+        pl_empresa.oninput = calcula_auto;
+        in_gr.oninput = function () {
+            in_gr.value = "";
+            bb.style.display = 'none';
+        }
+    }
+
+
+
+    var Nomina = function (kms, an_ti, ir_pfQ, pl_empresa) {
         if (kms === "") kms = 0;
         if (an_ti === "") an_ti = 0;
         if (ir_pfQ === "") ir_pfQ = 0;
+        if (pl_empresa === "") pl_empresa = 0;
+        else pl_empresa = parseInt(pl_empresa);
 
         var precioKmPactado = _precioKmPactado.value != "" ? _precioKmPactado.value : 0;
         _precio_km.innerHTML = precioKmPactado.toString() + " cts/km";;
@@ -214,9 +227,10 @@
         _pl_tr.innerHTML = pl_tr;
         _pa_be.innerHTML = pa_be;
 
-        var di_et = (kms * precioKmPactado / 100) - kilometrosFijos;
+        var di_et = (kms * precioKmPactado / 100) - kilometrosFijos + pl_empresa;
+        console.log(di_et);
         _di_et.innerHTML = di_et.toFixed(2);
-        var dietas_sin_ktje = di_et - kilometrosDietas;
+        var dietas_sin_ktje = di_et - kilometrosDietas - pl_empresa;
         var dias_a_convenio = dietas_sin_ktje / dieta_diaria;
         var dato = dias_a_convenio.toFixed(2).toString() + " días completos";
         _dias_convenio.innerHTML = dato;
@@ -227,7 +241,7 @@
         var fo_pr = (pl_tr + sa_ba + kilometrosFijos + pl_as + pa_be + sa_ba / 6) * fo_prQ / 100;
         var re_ex = ho_ex * re_exQ / 100;
 
-        ir_pf = (to_dev - di_et) * ir_pfQ / 100;
+        ir_pf = (ho_ex + pl_no + ho_pr + sa_ba + pl_tr + pa_be + pl_as) * ir_pfQ / 100;
         to_ap = co_co + de_se + fo_pr + re_ex;
         _to_aportaciones.innerHTML = to_ap.toFixed(2);
         var msg = "IRPF (".concat(ir_pfQ, "%)");

@@ -35,12 +35,9 @@
             padding-top: 12px;
         }
 
-        .posible {
-            display: grid;
-        }
-
         .full-width {
             grid-column: 1 / 3;
+            display: none;
         }
     </style>
     </div>
@@ -52,7 +49,7 @@
             </div>
 
             <div>
-                <input type="number" id="plus_emp" placeholder="Extras emp." name="pluses">
+                <input type="number" id="pl_empresa" placeholder="Extras emp." name="pl_empresa">
                 <label>*Pluses particulares</label>
             </div>
             <div>
@@ -61,17 +58,27 @@
             </div>
             <div>
                 <input type="number" id="precioKmPactado_ht" placeholder="(Ej. 11,5)" name="precioKmPactado">
-                <label for="precioKmPactado">Céntimos/km</label>
+                <p>
+                        <input type="checkbox" id="check_preciokm" />
+                        <label for="check_preciokm">Céntimos / kilómetro</label>
+                    </p>
             </div>
             <div>
                 <input type="number" id="irpf" placeholder="(Ej. 9,33)" name="irpf">
                 <label for="irpf">% de IRPF aplicado</label>
             </div>
+
             <div>
                 <input type="number" id="in_gr" placeholder="Ingreso" name="ingreso">
-                <label>Ingresado en Euros</label>
+                <p>
+                    <input type="checkbox" id="check_importe" checked="checked" />
+                    <label for="check_importe">Importe del ingreso</label>
+                </p>
             </div>
-            <input type="button" id="calcula" class="posible full-width waves-effect waves-light btn color-verde" value="Ver nómina">
+            <div id="bb" class="full-width">
+                <input type="button" id="calcula" class="waves-effect waves-light btn color-verde" value="Ver nómina">
+            </div>
+
         </form>
         <div class="table-responsive">
             <table class="striped" id="tabla" style="display:none">

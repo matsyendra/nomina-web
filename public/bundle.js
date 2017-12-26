@@ -68,7 +68,7 @@
 /***/ (function(module, exports) {
 
 (function () {
-    if ('serviceWorker' in navigator && false) {//TODO: ATENCION NO REGISTRO PARA DEV
+    if ('serviceWorker' in navigator && false) { //TODO: ATENCION NO REGISTRO PARA DEV
         window.addEventListener('load', function () {
             navigator.serviceWorker.register('/sw.js').then(function (registration) {
                 // Registration was successful
@@ -87,7 +87,7 @@
         storageBucket: "nomina-6e781.appspot.com",
         messagingSenderId: "984370076661"
     };
-    
+
     var r = firebase.initializeApp(config);
     var database = firebase.database();
     var incrementa_var = function incrementa(raiz, variable) { //TODO: desarrollo o no: "desarrollo/" +
@@ -107,9 +107,11 @@
 
     const formulario = document.getElementById("formulario");
     const tabla = document.getElementById("tabla");
-    const et_kms = document.getElementById("et_kms");
     const _an_ti = document.getElementById("an_ti");
+    const pl_empresa = document.getElementById("pl_empresa");
     const _irpf = document.getElementById("irpf");
+    const et_kms = document.getElementById("et_kms");
+    const in_gr = document.getElementById("in_gr");
     const _precioKmPactado = document.getElementById("precioKmPactado_ht");
     const btn = document.getElementById("btn");
 
@@ -164,7 +166,7 @@
     const k_Ma10d = 0.0484;
     const dieta_diaria = 30.1;
 
-    document.getElementById('compartir').addEventListener("click", function (event){
+    document.getElementById('compartir').addEventListener("click", function (event) {
         if (navigator.share) {
             navigator.share({
                 text: 'Prueba la calculadora de Nómina en: ',
@@ -175,6 +177,9 @@
 
     document.getElementById('calcula').addEventListener("click", function (event) {
         event.preventDefault();
+        if (document.activeElement) { //FIXME: OBSERVAR
+            document.activeElement.blur();
+        }
         document.getElementById("tabla").style.display = 'block';
         formulario.style.display = 'none';
         if (navigator.onLine) {
@@ -186,14 +191,13 @@
         new Nomina(et_kms.value, _an_ti.value, _irpf.value);
     });
 
-
-    document.getElementById('recargar').addEventListener("click", function (event){
+    document.getElementById('recargar').addEventListener("click", function (event) {
         event.preventDefault();
         if (navigator.onLine) {
             incrementa_var("clics_totales", "boton_nueva_operacion");
         }
         tabla.style.display = 'none';
-        formulario.style.display = 'block';
+        formulario.style.display = 'grid';
         et_kms.value = "";
         _an_ti.value = "";
     });
@@ -214,10 +218,48 @@
         if (kms > 19000) return "con más de 19000 kms";
     }
 
-    function Nomina(kms, an_ti, ir_pfQ) {
+    et_kms.oninput = function () {
+        if (et_kms.value != "" && _precioKmPactado.value != "") {
+            n = new Nomina(et_kms.value, _an_ti.value, _irpf.value, pl_empresa.value);
+            var v = n.ingreso;
+            in_gr.value = v;
+        } else in_gr.value = "";
+    };
+    _irpf.oninput = function () {
+        if (et_kms.value != "" && _precioKmPactado.value != "") {
+            n = new Nomina(et_kms.value, _an_ti.value, _irpf.value, pl_empresa.value);
+            var v = n.ingreso;
+            in_gr.value = v;
+        } else in_gr.value = "";
+    };
+    _precioKmPactado.oninput = function () {
+        if (et_kms.value != "" && _precioKmPactado.value != "") {
+            n = new Nomina(et_kms.value, _an_ti.value, _irpf.value, pl_empresa.value);
+            var v = n.ingreso;
+            in_gr.value = v;
+        } else in_gr.value = "";
+    };
+    _an_ti.oninput = function () {
+        if (et_kms.value != "" && _precioKmPactado.value != "") {
+            n = new Nomina(et_kms.value, _an_ti.value, _irpf.value, pl_empresa.value);
+            var v = n.ingreso;
+            in_gr.value = v;
+        } else in_gr.value = "";
+    };
+    pl_empresa.oninput = function () {
+        if (et_kms.value != "" && _precioKmPactado.value != "") {
+            n = new Nomina(et_kms.value, _an_ti.value, _irpf.value, pl_empresa.value);
+            var v = n.ingreso;
+            in_gr.value = v;
+        } else in_gr.value = "";
+    };
+
+
+    var Nomina = function (kms, an_ti, ir_pfQ, pl_empresa) { 
         if (kms === "") kms = 0;
         if (an_ti === "") an_ti = 0;
         if (ir_pfQ === "") ir_pfQ = 0;
+        if (pl_empresa === "") pl_empresa = 0;
 
         var precioKmPactado = _precioKmPactado.value != "" ? _precioKmPactado.value : 0;
         _precio_km.innerHTML = precioKmPactado.toString() + " cts/km";;
@@ -250,11 +292,11 @@
         _pl_tr.innerHTML = pl_tr;
         _pa_be.innerHTML = pa_be;
 
-        var di_et = (kms * precioKmPactado / 100) - kilometrosFijos;
+        var di_et = (kms * precioKmPactado / 100) - kilometrosFijos + pl_empresa;
         _di_et.innerHTML = di_et.toFixed(2);
         var dietas_sin_ktje = di_et - kilometrosDietas;
         var dias_a_convenio = dietas_sin_ktje / dieta_diaria;
-        var dato = dias_a_convenio.toFixed(2).toString() + " días complets";
+        var dato = dias_a_convenio.toFixed(2).toString() + " días completos";
         _dias_convenio.innerHTML = dato;
         var to_dev = ho_ex + pl_no + ho_pr + di_et + sa_ba + pl_tr + pa_be + pl_as;
         _to_dev.innerHTML = to_dev.toFixed(2);
@@ -277,6 +319,8 @@
         _li_percibir.innerHTML = parseFloat(to_a_percibir).toFixed(2);
         var TT_RE = to_a_percibir + anticipos;
         _to_retribuido.innerHTML = parseFloat(TT_RE).toFixed(2);
+
+        Nomina.prototype.ingreso = parseFloat(to_a_percibir).toFixed(2);
     }
 })();
 
