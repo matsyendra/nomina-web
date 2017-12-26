@@ -27,25 +27,51 @@
         <i id="compartir" class="material-icons">share</i>
         <!-- <i id="update" class="material-icons">update</i> -->
     </header>
+    <style>
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 16px;
+            padding-top: 12px;
+        }
+
+        .posible {
+            display: grid;
+        }
+
+        .full-width {
+            grid-column: 1 / 3;
+        }
+    </style>
+    </div>
     <div class="container margen68">
         <form id="formulario">
             <div>
-                <label for="kms">Kilómetros Realizados</label>
-                <input type="number" class="" id="et_kms" placeholder="Kms" name="kms">
-            </div>
-            <div class="form-group">
+                <input type="number" id="an_ti" placeholder="Anticipos" name="anticipos">
                 <label for="anticipos">Anticipos recibidos</label>
-                <input type="number" class="form-control" id="an_ti" placeholder="Anticipos" name="anticipos">
             </div>
-            <div class="form-group">
+
+            <div>
+                <input type="number" id="plus_emp" placeholder="Extras emp." name="pluses">
+                <label>*Pluses particulares</label>
+            </div>
+            <div>
+                <input type="number" id="et_kms" placeholder="Kms">
+                <label>Kilómetros Realizados</label>
+            </div>
+            <div>
+                <input type="number" id="precioKmPactado_ht" placeholder="(Ej. 11,5)" name="precioKmPactado">
+                <label for="precioKmPactado">Céntimos/km</label>
+            </div>
+            <div>
+                <input type="number" id="irpf" placeholder="(Ej. 9,33)" name="irpf">
                 <label for="irpf">% de IRPF aplicado</label>
-                <input type="number" class="form-control" id="irpf" placeholder="(Ejemplo: 9,33)" name="irpf">
             </div>
-            <div class="form-group">
-                <label for="precioKmPactado">Precio ( céntimos / kilómetro )</label>
-                <input type="number" class="form-control" id="precioKmPactado_ht" placeholder="(Ejemplo: 11,5)" name="precioKmPactado">
+            <div>
+                <input type="number" id="in_gr" placeholder="Ingreso" name="ingreso">
+                <label>Ingresado en Euros</label>
             </div>
-            <input type="button" id="calcula" class="waves-effect waves-light btn color-verde" value="Calcula">
+            <input type="button" id="calcula" class="posible full-width waves-effect waves-light btn color-verde" value="Ver nómina">
         </form>
         <div class="table-responsive">
             <table class="striped" id="tabla" style="display:none">
