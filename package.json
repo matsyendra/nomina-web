@@ -8,13 +8,15 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "sw-precache": "^5.2.0",
-    "webpack": "^3.9.1"
+    "webpack": "^3.9.1",
+    "webpack-dev-server": "^2.9.7"
   },
   "scripts": {
-    "pack": "webpack ./public/.main.js ./public/bundle.js -p && gulp gen-sw",
-    "simple": "webpack ./public/.main.js ./public/bundle.js -p && gulp gen-sw && simple-server public 3000",
-    "serve": "webpack ./public/.main.js ./public/bundle.js -p && gulp gen-sw && firebase serve",
-    "deploy": "webpack ./public/.main.js ./public/bundle.js -p && gulp gen-sw && firebase deploy",
+    "pack-sw": "webpack -p && gulp gen-sw",
+    "s": "webpack-dev-server --content-base ./public/ --hot --inline",
+    "sw": "webpack -p && gulp gen-sw && webpack-dev-server --content-base ./public/ --hot --inline",
+    "sw-f": "webpack -p && gulp gen-sw && firebase serve",
+    "deploy": "webpack -p && gulp gen-sw && firebase deploy",    
     "//": "falló: -&& mv ./public/main.js ./desarrollo/main.js- en script anterior ¿? previo al deploy"
   }
 }

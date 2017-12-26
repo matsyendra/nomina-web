@@ -1,5 +1,5 @@
 (function () {
-    if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator && false) {//TODO: ATENCION NO REGISTRO PARA DEV
         window.addEventListener('load', function () {
             navigator.serviceWorker.register('/sw.js').then(function (registration) {
                 // Registration was successful
@@ -185,7 +185,7 @@
         _di_et.innerHTML = di_et.toFixed(2);
         var dietas_sin_ktje = di_et - kilometrosDietas;
         var dias_a_convenio = dietas_sin_ktje / dieta_diaria;
-        var dato = dias_a_convenio.toFixed(2).toString() + " días completis";
+        var dato = dias_a_convenio.toFixed(2).toString() + " días completos";
         _dias_convenio.innerHTML = dato;
         var to_dev = ho_ex + pl_no + ho_pr + di_et + sa_ba + pl_tr + pa_be + pl_as;
         _to_dev.innerHTML = to_dev.toFixed(2);

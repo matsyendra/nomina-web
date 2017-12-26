@@ -1,1 +1,284 @@
-!function(e){function t(o){if(n[o])return n[o].exports;var i=n[o]={i:o,l:!1,exports:{}};return e[o].call(i.exports,i,i.exports,t),i.l=!0,i.exports}var n={};t.m=e,t.c=n,t.d=function(e,n,o){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:o})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="",t(t.s=0)}([function(e,t){!function(){function e(e){return e<6e3?"con menos de 6000 kms":e<9e3?"entre 6000 y 9000 kms":e<1e4?"entre 9000 y 10000 kms":e<11e3?"10000 y pico":e<12e3?"11000 y pico":e<13e3?"12000 y pico":e<14e3?"13000 y pico":e<15e3?"14000 y pico":e<16e3?"15000 y pico":e<17e3?"16000 y pico":e<18e3?"17000 y pico":e<19e3?"18000 y pico":e>19e3?"con más de 19000 kms":void 0}function t(e,t,n){""===e&&(e=0),""===t&&(t=0),""===n&&(n=0);var o=""!=u.value?u.value:0;p.innerHTML=o.toString()+" cts/km",navigator.onLine&&i("precio_km",o.toString().replace(".",",")),"undefined"!=typeof Storage&&(localStorage.setItem("irpf",n),localStorage.setItem("preciokm",o));s.innerHTML=e,g.innerHTML=w,y.innerHTML=P;var r=e>1e4?1e4*O+(e-1e4)*R:e*O,a=e>1e4?1e4*W+(e-1e4)*A:e*W,c=.5*r;f.innerHTML=c.toFixed(2),v.innerHTML=j;var l=.1*r;_.innerHTML=l.toFixed(2);var d=.4*r;I.innerHTML=d.toFixed(2),E.innerHTML=D,B.innerHTML=z;var m=e*o/100-r;L.innerHTML=m.toFixed(2);var q=m-a,G=q/K,U=G.toFixed(2).toString()+" días completis";S.innerHTML=U;var C=c+l+d+m+P+D+z+j;b.innerHTML=C.toFixed(2);var N=4.7*(D+P+c+j+z+P/6)/100,Q=1.55*(D+P+r+j+z+P/6)/100,Y=.1*(D+P+r+j+z+P/6)/100,Z=4.7*c/100;ir_pf=(C-m)*n/100,to_ap=N+Q+Y+Z,k.innerHTML=to_ap.toFixed(2);var J="IRPF (".concat(n,"%)");M.innerHTML=J,T.innerHTML=ir_pf.toFixed(2);var V=parseFloat(t);H.innerHTML=V;var X=to_ap+ir_pf+V;x.innerHTML=parseFloat(X).toFixed(2),to_a_percibir=C-X,F.innerHTML=parseFloat(to_a_percibir).toFixed(2);var $=to_a_percibir+V;h.innerHTML=parseFloat($).toFixed(2)}"serviceWorker"in navigator&&window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").then(function(e){console.log("ServiceWorker registration successful with scope: ",e.scope)}).catch(function(e){console.log("ServiceWorker registration failed: ",e)})});var n={apiKey:"AIzaSyDyvTK1lG1dxtidqrBZAz5fO4zGQC3YafU",authDomain:"nomina-6e781.firebaseapp.com",databaseURL:"https://nomina-6e781.firebaseio.com",projectId:"nomina-6e781",storageBucket:"nomina-6e781.appspot.com",messagingSenderId:"984370076661"},o=(firebase.initializeApp(n),firebase.database()),i=function(e,t){o.ref(e).child(t).child("contador").transaction(function(e){return(e||0)+1})};window.addEventListener("online",function(){console.log(" - online")}),window.addEventListener("offline",function(){console.log(" - offline")});const r=document.getElementById("formulario"),a=document.getElementById("tabla"),c=document.getElementById("et_kms"),l=document.getElementById("an_ti"),d=document.getElementById("irpf"),u=document.getElementById("precioKmPactado_ht");document.getElementById("btn");if("undefined"!=typeof Storage){var m=localStorage.getItem("preciokm");u.value=null===m?11.5:m,d.value=localStorage.getItem("irpf")}const s=document.querySelector("#kms_re"),p=document.getElementById("precio_km"),g=document.getElementById("ta_salarial"),y=document.getElementById("sa_ba"),f=document.getElementById("ho_ex"),v=document.getElementById("pl_as"),_=document.getElementById("pl_no"),I=document.getElementById("ho_pr"),E=document.getElementById("pl_tr"),B=document.getElementById("pa_be"),L=document.getElementById("di_et"),b=document.getElementById("to_dev"),k=document.getElementById("to_aportaciones"),M=document.getElementById("irpf_p"),T=document.getElementById("irpf_r"),H=document.getElementById("anticipos"),x=document.getElementById("to_deducir"),F=document.getElementById("li_percibir"),h=document.getElementById("to_retribuido"),S=document.getElementById("dias_convenio"),w=2018,P=955.52,j=173.01,z=79.63,D=97.77,O=.0185,R=.0329,W=.0268,A=.0484,K=30.1;document.getElementById("compartir").addEventListener("click",function(e){navigator.share&&navigator.share({text:"Prueba la calculadora de Nómina en: ",url:"https://nomina-6e781.firebaseapp.com/"})}),document.getElementById("calcula").addEventListener("click",function(n){n.preventDefault(),document.getElementById("tabla").style.display="block",r.style.display="none",navigator.onLine?(console.log("calcula online"),i("valores_IRPF","Rondando el "+Math.round(d.value).toString()),i("kms_totales",""!=c.value?e(c.value):"0"),i("clics_totales","boton_calcular")):console.log("calcula offline"),new t(c.value,l.value,d.value)}),document.getElementById("recargar").addEventListener("click",function(e){e.preventDefault(),navigator.onLine&&i("clics_totales","boton_nueva_operacion"),a.style.display="none",r.style.display="block",c.value="",l.value=""})}()}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports) {
+
+(function () {
+    if ('serviceWorker' in navigator && false) {//TODO: ATENCION NO REGISTRO PARA DEV
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('/sw.js').then(function (registration) {
+                // Registration was successful
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }).catch(function (err) {
+                // registration failed :(
+                console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+    }
+    var config = {
+        apiKey: "AIzaSyDyvTK1lG1dxtidqrBZAz5fO4zGQC3YafU",
+        authDomain: "nomina-6e781.firebaseapp.com",
+        databaseURL: "https://nomina-6e781.firebaseio.com",
+        projectId: "nomina-6e781",
+        storageBucket: "nomina-6e781.appspot.com",
+        messagingSenderId: "984370076661"
+    };
+    
+    var r = firebase.initializeApp(config);
+    var database = firebase.database();
+    var incrementa_var = function incrementa(raiz, variable) { //TODO: desarrollo o no: "desarrollo/" +
+        var databaseRef = database.ref(raiz).child(variable).child('contador');
+        databaseRef.transaction(function (searches) {
+            return (searches || 0) + 1;
+        });
+    }
+
+    window.addEventListener('online', function () {
+        console.log(' - online');
+
+    });
+    window.addEventListener('offline', function () {
+        console.log(' - offline');
+    });
+
+    const formulario = document.getElementById("formulario");
+    const tabla = document.getElementById("tabla");
+    const et_kms = document.getElementById("et_kms");
+    const _an_ti = document.getElementById("an_ti");
+    const _irpf = document.getElementById("irpf");
+    const _precioKmPactado = document.getElementById("precioKmPactado_ht");
+    const btn = document.getElementById("btn");
+
+    if (typeof (Storage) !== "undefined") {
+        var guardado = localStorage.getItem("preciokm");
+        if (guardado === null) _precioKmPactado.value = 11.5;
+        else
+            _precioKmPactado.value = guardado;
+        _irpf.value = localStorage.getItem("irpf");
+    }
+
+    const kms_re = document.querySelector("#kms_re");
+    const _precio_km = document.getElementById("precio_km");
+    const _ta_salarial = document.getElementById("ta_salarial");
+    const _sa_ba = document.getElementById("sa_ba");
+    const _ho_ex = document.getElementById("ho_ex");
+    const _pl_as = document.getElementById("pl_as");
+    const _pl_no = document.getElementById("pl_no");
+    const _ho_pr = document.getElementById("ho_pr");
+    const _pl_tr = document.getElementById("pl_tr");
+    const _pa_be = document.getElementById("pa_be");
+    const _di_et = document.getElementById("di_et");
+    const _to_dev = document.getElementById("to_dev");
+    const _to_aportaciones = document.getElementById("to_aportaciones");
+    const _irpf_p = document.getElementById("irpf_p");
+    const _irpf_r = document.getElementById("irpf_r");
+    const _anticipos = document.getElementById("anticipos");
+    const _to_deducir = document.getElementById("to_deducir");
+    const _li_percibir = document.getElementById("li_percibir");
+    const _to_retribuido = document.getElementById("to_retribuido");
+    const _dias_convenio = document.getElementById("dias_convenio");
+
+    /* const tabla_salarial = 2017;
+    const sa_ba = 936.78;
+    const pl_as = 169.62;
+    const pa_be = 78.06;
+    const pl_tr = 95.86;
+    const k_me10 = 0.0181;
+    const k_Ma10 = 0.0323;
+    const k_me10d = 0.0263;
+    const k_Ma10d = 0.0474;
+    const dieta_diaria = 30; */
+
+    const tabla_salarial = 2018;
+    const sa_ba = 955.52;
+    const pl_as = 173.01;
+    const pa_be = 79.63;
+    const pl_tr = 97.77;
+    const k_me10 = 0.0185;
+    const k_Ma10 = 0.0329;
+    const k_me10d = 0.0268;
+    const k_Ma10d = 0.0484;
+    const dieta_diaria = 30.1;
+
+    document.getElementById('compartir').addEventListener("click", function (event){
+        if (navigator.share) {
+            navigator.share({
+                text: 'Prueba la calculadora de Nómina en: ',
+                url: 'https://nomina-6e781.firebaseapp.com/',
+            })
+        }
+    });
+
+    document.getElementById('calcula').addEventListener("click", function (event) {
+        event.preventDefault();
+        document.getElementById("tabla").style.display = 'block';
+        formulario.style.display = 'none';
+        if (navigator.onLine) {
+            console.log('calcula online');
+            incrementa_var("valores_IRPF", "Rondando el " + Math.round(_irpf.value).toString());
+            incrementa_var("kms_totales", et_kms.value != "" ? rangoKms(et_kms.value) : "0");
+            incrementa_var("clics_totales", "boton_calcular");
+        } else console.log('calcula offline');
+        new Nomina(et_kms.value, _an_ti.value, _irpf.value);
+    });
+
+
+    document.getElementById('recargar').addEventListener("click", function (event){
+        event.preventDefault();
+        if (navigator.onLine) {
+            incrementa_var("clics_totales", "boton_nueva_operacion");
+        }
+        tabla.style.display = 'none';
+        formulario.style.display = 'block';
+        et_kms.value = "";
+        _an_ti.value = "";
+    });
+
+    function rangoKms(kms) {
+        if (kms < 6000) return "con menos de 6000 kms";
+        if (kms < 9000) return "entre 6000 y 9000 kms";
+        if (kms < 10000) return "entre 9000 y 10000 kms";
+        if (kms < 11000) return "10000 y pico";
+        if (kms < 12000) return "11000 y pico";
+        if (kms < 13000) return "12000 y pico";
+        if (kms < 14000) return "13000 y pico";
+        if (kms < 15000) return "14000 y pico";
+        if (kms < 16000) return "15000 y pico";
+        if (kms < 17000) return "16000 y pico";
+        if (kms < 18000) return "17000 y pico";
+        if (kms < 19000) return "18000 y pico";
+        if (kms > 19000) return "con más de 19000 kms";
+    }
+
+    function Nomina(kms, an_ti, ir_pfQ) {
+        if (kms === "") kms = 0;
+        if (an_ti === "") an_ti = 0;
+        if (ir_pfQ === "") ir_pfQ = 0;
+
+        var precioKmPactado = _precioKmPactado.value != "" ? _precioKmPactado.value : 0;
+        _precio_km.innerHTML = precioKmPactado.toString() + " cts/km";;
+
+        if (navigator.onLine)
+            incrementa_var("precio_km", precioKmPactado.toString().replace(".", ","));
+
+        if (typeof (Storage) !== "undefined") {
+            localStorage.setItem("irpf", ir_pfQ);
+            localStorage.setItem("preciokm", precioKmPactado);
+        }
+        var co_coQ = 4.7,
+            de_seQ = 1.55,
+            fo_prQ = 0.1,
+            re_exQ = 4.7;
+
+        kms_re.innerHTML = kms;
+        _ta_salarial.innerHTML = tabla_salarial;
+        _sa_ba.innerHTML = sa_ba;
+        var kilometrosFijos = kms > 10000 ? k_me10 * 10000 + (kms - 10000) * (k_Ma10) : kms * k_me10;
+        var kilometrosDietas = kms > 10000 ? k_me10d * 10000 + (kms - 10000) * (k_Ma10d) : kms * k_me10d;
+
+        var ho_ex = kilometrosFijos * (0.5);
+        _ho_ex.innerHTML = ho_ex.toFixed(2);
+        _pl_as.innerHTML = pl_as;
+        var pl_no = kilometrosFijos * 0.1;
+        _pl_no.innerHTML = pl_no.toFixed(2);
+        var ho_pr = kilometrosFijos * 0.4;
+        _ho_pr.innerHTML = ho_pr.toFixed(2);
+        _pl_tr.innerHTML = pl_tr;
+        _pa_be.innerHTML = pa_be;
+
+        var di_et = (kms * precioKmPactado / 100) - kilometrosFijos;
+        _di_et.innerHTML = di_et.toFixed(2);
+        var dietas_sin_ktje = di_et - kilometrosDietas;
+        var dias_a_convenio = dietas_sin_ktje / dieta_diaria;
+        var dato = dias_a_convenio.toFixed(2).toString() + " días complets";
+        _dias_convenio.innerHTML = dato;
+        var to_dev = ho_ex + pl_no + ho_pr + di_et + sa_ba + pl_tr + pa_be + pl_as;
+        _to_dev.innerHTML = to_dev.toFixed(2);
+        var co_co = (pl_tr + sa_ba + ho_ex + pl_as + pa_be + sa_ba / 6) * co_coQ / 100;
+        var de_se = (pl_tr + sa_ba + kilometrosFijos + pl_as + pa_be + sa_ba / 6) * de_seQ / 100;
+        var fo_pr = (pl_tr + sa_ba + kilometrosFijos + pl_as + pa_be + sa_ba / 6) * fo_prQ / 100;
+        var re_ex = ho_ex * re_exQ / 100;
+
+        ir_pf = (to_dev - di_et) * ir_pfQ / 100;
+        to_ap = co_co + de_se + fo_pr + re_ex;
+        _to_aportaciones.innerHTML = to_ap.toFixed(2);
+        var msg = "IRPF (".concat(ir_pfQ, "%)");
+        _irpf_p.innerHTML = msg;
+        _irpf_r.innerHTML = ir_pf.toFixed(2);
+        var anticipos = parseFloat(an_ti);
+        _anticipos.innerHTML = anticipos
+        var to_ded = to_ap + ir_pf + anticipos;
+        _to_deducir.innerHTML = parseFloat(to_ded).toFixed(2);
+        to_a_percibir = to_dev - to_ded;
+        _li_percibir.innerHTML = parseFloat(to_a_percibir).toFixed(2);
+        var TT_RE = to_a_percibir + anticipos;
+        _to_retribuido.innerHTML = parseFloat(TT_RE).toFixed(2);
+    }
+})();
+
+/***/ })
+/******/ ]);
