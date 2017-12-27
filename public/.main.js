@@ -166,26 +166,32 @@
 
     const check_ingreso = document.getElementById('check_importe');
     const check_preciokm = document.getElementById('check_preciokm');
-    if (check_ingreso.checked) checkeando_ingreso;
-    check_preciokm.checked = false;
-    check_ingreso.addEventListener('change', function () {
-        if (this.checked) {
-            checkeando_ingreso;
-        }
-    });
-
-    var checkeando_ingreso = function () {
+    const ccc = function(){
         check_preciokm.checked = false;
         et_kms.oninput = calcula_auto;
         _irpf.oninput = calcula_auto;
         _precioKmPactado.oninput = calcula_auto;
         _an_ti.oninput = calcula_auto;
         pl_empresa.oninput = calcula_auto;
-        in_gr.oninput = function () {
-            in_gr.value = "";
-            bb.style.display = 'none';
-        }
+        in_gr.disabled = true;
+        _precioKmPactado.disabled = false;
     }
+    if (check_ingreso.checked) {
+        ccc();
+    } else {
+        in_gr.disabled = false;
+        check_preciokm.checked = true;
+        _precioKmPactado.disabled = true;
+    }
+    check_ingreso.addEventListener('change', function () {
+        if (this.checked) {
+            ccc();
+        } else {            
+            in_gr.disabled = false;
+            check_preciokm.checked = true;
+            _precioKmPactado.disabled = true;
+        }
+    });
 
 
 
