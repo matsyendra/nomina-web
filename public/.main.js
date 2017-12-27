@@ -111,6 +111,7 @@
         }
     });
 
+    var pp;
     b_calcula.addEventListener("click", function (event) {
         event.preventDefault();
         if (document.activeElement) { //FIXME: OBSERVAR
@@ -124,7 +125,6 @@
             incrementa_var("kms_totales", et_kms.value != "" ? rangoKms(et_kms.value) : "0");
             incrementa_var("clics_totales", "boton_calcular");
         } else console.log('calcula offline');
-        //new Nomina(et_kms.value, _an_ti.value, _irpf.value);
     });
 
     document.getElementById('recargar').addEventListener("click", function (event) {
@@ -190,18 +190,20 @@
         pl_empresa.oninput = calcula_auto;
         in_gr.disabled = true;
         _precioKmPactado.disabled = false;
-    }
+    };
     if (check_ingreso.checked) {
         ccc();
-    } else {
+    } else if (!check_ingreso.checked){
         in_gr.disabled = false;
         check_preciokm.checked = true;
         _precioKmPactado.disabled = true;
+        bb.style.display = 'none';
     }
     check_ingreso.addEventListener('change', function () {
         if (this.checked) {
             ccc();
-        } else {
+        } else if (!this.checked){
+            bb.style.display = 'none';
             in_gr.disabled = false;
             check_preciokm.checked = true;
             _precioKmPactado.disabled = true;
@@ -244,16 +246,6 @@
         _pl_tr.innerHTML = pl_tr;
         _pa_be.innerHTML = pa_be;
 
-        if (llamada == -1) {
-            var di_et = (kms * precioKmPactado / 100) - kilometrosFijos + pl_empresa;
-            _di_et.innerHTML = di_et.toFixed(2);
-            var dietas_sin_ktje = di_et - kilometrosDietas - pl_empresa;
-            var dias_a_convenio = dietas_sin_ktje / dieta_diaria;
-            var dato = dias_a_convenio.toFixed(2).toString() + " días completos";
-            _dias_convenio.innerHTML = dato;
-            var to_dev = ho_ex + pl_no + ho_pr + di_et + sa_ba + pl_tr + pa_be + pl_as;
-            _to_dev.innerHTML = to_dev.toFixed(2);
-        }
         var co_co = (pl_tr + sa_ba + ho_ex + pl_as + pa_be + sa_ba / 6) * co_coQ / 100;
         var de_se = (pl_tr + sa_ba + kilometrosFijos + pl_as + pa_be + sa_ba / 6) * de_seQ / 100;
         var fo_pr = (pl_tr + sa_ba + kilometrosFijos + pl_as + pa_be + sa_ba / 6) * fo_prQ / 100;
@@ -269,17 +261,27 @@
         _anticipos.innerHTML = anticipos;
         var to_ded = to_ap + ir_pf + anticipos;
         _to_deducir.innerHTML = parseFloat(to_ded).toFixed(2);
-        to_a_percibir = to_dev - to_ded;
-        _li_percibir.innerHTML = parseFloat(to_a_percibir).toFixed(2);
-        var TT_RE = to_a_percibir + anticipos;
-        _to_retribuido.innerHTML = parseFloat(TT_RE).toFixed(2);
+        if (llamada == -1) {
+            var di_et = (kms * precioKmPactado / 100) - kilometrosFijos + pl_empresa;
+            _di_et.innerHTML = di_et.toFixed(2);
+            var dietas_sin_ktje = di_et - kilometrosDietas - pl_empresa;
+            var dias_a_convenio = dietas_sin_ktje / dieta_diaria;
+            var dato = dias_a_convenio.toFixed(2).toString() + " días completos";
+            _dias_convenio.innerHTML = dato;
+            var to_dev = ho_ex + pl_no + ho_pr + di_et + sa_ba + pl_tr + pa_be + pl_as;
+            _to_dev.innerHTML = to_dev.toFixed(2);
+            to_a_percibir = to_dev - to_ded;
+            _li_percibir.innerHTML = parseFloat(to_a_percibir).toFixed(2);
+            var TT_RE = to_a_percibir + anticipos;
+            _to_retribuido.innerHTML = parseFloat(TT_RE).toFixed(2);
 
-        Nomina.prototype.ingreso = parseFloat(to_a_percibir).toFixed(2);
+            Nomina.prototype.ingreso = parseFloat(to_a_percibir).toFixed(2);
+        }
 
         if (llamada != -1) {
             var to_sindietas = ho_ex + pl_no + ho_pr + sa_ba + pl_tr + pa_be + pl_as;
-            var pp = (parseFloat(llamada)+ to_ap + ir_pf - to_sindietas + kilometrosFijos + anticipos)*100/parseFloat(kms);
-            Nomina.prototype.pk = pp.toFixed(2);
+            var pp = (parseFloat(llamada) + to_ap + ir_pf - to_sindietas + kilometrosFijos + anticipos) * 100 / parseFloat(kms);
+            Nomina.prototype.pk = pp.toFixed(4);
         }
-    }
+    };
 })();
