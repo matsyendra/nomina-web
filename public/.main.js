@@ -97,6 +97,11 @@
     const k_Ma10d = 0.0484;
     const dieta_diaria = 30.1;
 
+    const co_coQ = 4.7,
+        de_seQ = 1.55,
+        fo_prQ = 0.1,
+        re_exQ = 4.7;
+
     document.getElementById('compartir').addEventListener("click", function (event) {
         if (navigator.share) {
             navigator.share({
@@ -154,7 +159,7 @@
     const bb = document.getElementById('bb');
     const calcula_auto = function () {
         if (et_kms.value != "" && _precioKmPactado.value != "") {
-            n = new Nomina(et_kms.value, _an_ti.value, _irpf.value, pl_empresa.value);
+            n = new Nomina(et_kms.value, _an_ti.value, _irpf.value, pl_empresa.value, -1);
             var v = n.ingreso;
             in_gr.value = v;
             bb.style.display = "grid";
@@ -163,10 +168,20 @@
             bb.style.display = 'none';
         }
     };
+    const calcula_pk = function () {
+        if (et_kms.value != "" && in_gr.value != "") {
+            var n = new Nomina(et_kms.value, _an_ti.value, _irpf.value, pl_empresa.value, in_gr.value);
+            var d = n.pk;
+            console.log(d);
+            _precioKmPactado.value = d;
+        }
+    }
+
+    in_gr.oninput = calcula_pk;
 
     const check_ingreso = document.getElementById('check_importe');
     const check_preciokm = document.getElementById('check_preciokm');
-    const ccc = function(){
+    const ccc = function () {
         check_preciokm.checked = false;
         et_kms.oninput = calcula_auto;
         _irpf.oninput = calcula_auto;
@@ -186,7 +201,7 @@
     check_ingreso.addEventListener('change', function () {
         if (this.checked) {
             ccc();
-        } else {            
+        } else {
             in_gr.disabled = false;
             check_preciokm.checked = true;
             _precioKmPactado.disabled = true;
@@ -195,7 +210,7 @@
 
 
 
-    var Nomina = function (kms, an_ti, ir_pfQ, pl_empresa) {
+    var Nomina = function (kms, an_ti, ir_pfQ, pl_empresa, llamada) {
         if (kms === "") kms = 0;
         if (an_ti === "") an_ti = 0;
         if (ir_pfQ === "") ir_pfQ = 0;
@@ -203,7 +218,7 @@
         else pl_empresa = parseInt(pl_empresa);
 
         var precioKmPactado = _precioKmPactado.value != "" ? _precioKmPactado.value : 0;
-        _precio_km.innerHTML = precioKmPactado.toString() + " cts/km";;
+        _precio_km.innerHTML = precioKmPactado.toString() + " cts/km";
 
         if (navigator.onLine)
             incrementa_var("precio_km", precioKmPactado.toString().replace(".", ","));
@@ -212,10 +227,6 @@
             localStorage.setItem("irpf", ir_pfQ);
             localStorage.setItem("preciokm", precioKmPactado);
         }
-        var co_coQ = 4.7,
-            de_seQ = 1.55,
-            fo_prQ = 0.1,
-            re_exQ = 4.7;
 
         kms_re.innerHTML = kms;
         _ta_salarial.innerHTML = tabla_salarial;
@@ -233,15 +244,16 @@
         _pl_tr.innerHTML = pl_tr;
         _pa_be.innerHTML = pa_be;
 
-        var di_et = (kms * precioKmPactado / 100) - kilometrosFijos + pl_empresa;
-        console.log(di_et);
-        _di_et.innerHTML = di_et.toFixed(2);
-        var dietas_sin_ktje = di_et - kilometrosDietas - pl_empresa;
-        var dias_a_convenio = dietas_sin_ktje / dieta_diaria;
-        var dato = dias_a_convenio.toFixed(2).toString() + " días completos";
-        _dias_convenio.innerHTML = dato;
-        var to_dev = ho_ex + pl_no + ho_pr + di_et + sa_ba + pl_tr + pa_be + pl_as;
-        _to_dev.innerHTML = to_dev.toFixed(2);
+        if (llamada == -1) {
+            var di_et = (kms * precioKmPactado / 100) - kilometrosFijos + pl_empresa;
+            _di_et.innerHTML = di_et.toFixed(2);
+            var dietas_sin_ktje = di_et - kilometrosDietas - pl_empresa;
+            var dias_a_convenio = dietas_sin_ktje / dieta_diaria;
+            var dato = dias_a_convenio.toFixed(2).toString() + " días completos";
+            _dias_convenio.innerHTML = dato;
+            var to_dev = ho_ex + pl_no + ho_pr + di_et + sa_ba + pl_tr + pa_be + pl_as;
+            _to_dev.innerHTML = to_dev.toFixed(2);
+        }
         var co_co = (pl_tr + sa_ba + ho_ex + pl_as + pa_be + sa_ba / 6) * co_coQ / 100;
         var de_se = (pl_tr + sa_ba + kilometrosFijos + pl_as + pa_be + sa_ba / 6) * de_seQ / 100;
         var fo_pr = (pl_tr + sa_ba + kilometrosFijos + pl_as + pa_be + sa_ba / 6) * fo_prQ / 100;
@@ -254,7 +266,7 @@
         _irpf_p.innerHTML = msg;
         _irpf_r.innerHTML = ir_pf.toFixed(2);
         var anticipos = parseFloat(an_ti);
-        _anticipos.innerHTML = anticipos
+        _anticipos.innerHTML = anticipos;
         var to_ded = to_ap + ir_pf + anticipos;
         _to_deducir.innerHTML = parseFloat(to_ded).toFixed(2);
         to_a_percibir = to_dev - to_ded;
@@ -263,5 +275,11 @@
         _to_retribuido.innerHTML = parseFloat(TT_RE).toFixed(2);
 
         Nomina.prototype.ingreso = parseFloat(to_a_percibir).toFixed(2);
+
+        if (llamada != -1) {
+            var to_sindietas = ho_ex + pl_no + ho_pr + sa_ba + pl_tr + pa_be + pl_as;
+            var pp = (parseFloat(llamada)+ to_ap + ir_pf - to_sindietas + kilometrosFijos + anticipos)*100/parseFloat(kms);
+            Nomina.prototype.pk = pp.toFixed(2);
+        }
     }
 })();
