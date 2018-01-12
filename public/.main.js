@@ -172,7 +172,7 @@
         if (et_kms.value != "" && in_gr.value != "") {
             var n = new Nomina(et_kms.value, _an_ti.value, _irpf.value, pl_empresa.value, in_gr.value);
             var d = n.pk;
-            console.log(d);
+            console.log('valor' ,d);
             _precioKmPactado.value = d;
         }
     }
