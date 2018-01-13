@@ -73,7 +73,7 @@
     const _to_deducir = document.getElementById("to_deducir");
     const _li_percibir = document.getElementById("li_percibir");
     const _to_retribuido = document.getElementById("to_retribuido");
-    const _dias_convenio = document.getElementById("dias_convenio");
+    //const _dias_convenio = document.getElementById("dias_convenio");
 
     /* const tabla_salarial = 2017;
     const sa_ba = 936.78;
@@ -265,9 +265,9 @@
             var di_et = (kms * precioKmPactado / 100) - kilometrosFijos + pl_empresa;
             _di_et.innerHTML = di_et.toFixed(2);
             var dietas_sin_ktje = di_et - kilometrosDietas - pl_empresa;
-            var dias_a_convenio = dietas_sin_ktje / dieta_diaria;
+            /* var dias_a_convenio = dietas_sin_ktje / dieta_diaria;
             var dato = dias_a_convenio.toFixed(2).toString() + " días completos";
-            _dias_convenio.innerHTML = dato;
+            _dias_convenio.innerHTML = dato; */ //TODO: NO RELEVANTE CON CAMBIO DEL CONVENIO
             var to_dev = ho_ex + pl_no + ho_pr + di_et + sa_ba + pl_tr + pa_be + pl_as;
             _to_dev.innerHTML = to_dev.toFixed(2);
             to_a_percibir = to_dev - to_ded;
