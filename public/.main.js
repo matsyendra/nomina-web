@@ -120,11 +120,11 @@
         document.getElementById("tabla").style.display = 'block';
         formulario.style.display = 'none';
         if (navigator.onLine) {
-            console.log('calcula online');
+            console.log('calculando online');
             incrementa_var("valores_IRPF", "Rondando el " + Math.round(_irpf.value).toString());
             incrementa_var("kms_totales", et_kms.value != "" ? rangoKms(et_kms.value) : "0");
             incrementa_var("clics_totales", "boton_calcular");
-        } else console.log('calcula offline');
+        } else console.log('calculando offline');
     });
 
     document.getElementById('recargar').addEventListener("click", function (event) {
